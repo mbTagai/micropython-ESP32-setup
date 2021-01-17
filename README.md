@@ -17,7 +17,7 @@ make erease
 Command to erease ESP32 memory
 
 ```bash
-make find
+make flash
 ```
 
 Cpmmand to flash ESP memory to Micropython.
