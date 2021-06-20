@@ -4,7 +4,7 @@ ESPTOOL = "c:\users\tautv\appdata\roaming\python\python39\site-packages\esptool.
 IMAGE = ".\esp32-20210418-v1.15.bin"
 IMAGE_VERSION  = "1.15"
 PORT = COM3
-.PHONY = mode find test erease flash
+.PHONY = mode find test erease flash setup
 
 
 test:
@@ -25,3 +25,10 @@ flash:
 	@echo MicroPython Version:  ${IMAGE_VERSION}
 	python ${ESPTOOL} --chip esp32 --port ${PORT} --baud 460800 write_flash -z 0x1000 ${IMAGE}
 	@echo Flashing completed.
+
+setup:
+	@echo Runing setup script.
+	make find
+	make erease
+	make flash
+	@echo setup succesfully finished.
