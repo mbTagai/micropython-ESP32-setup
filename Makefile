@@ -1,8 +1,8 @@
 #  python c:\users\tautv\appdata\roaming\python\python39\site-packages\esptool.py --chip esp32 --port COM3 --baud 460800 write_flash -z 0x1000 .\esp32-idf3-20200902-v1.13.bin
 # esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
 ESPTOOL = "c:\users\tautv\appdata\roaming\python\python39\site-packages\esptool.py"
-IMAGE = ".\esp32-20210418-v1.15.bin"
-IMAGE_VERSION  = "1.15"
+IMAGE = ".\esp32-20210902-v1.17.bin"
+IMAGE_VERSION  = "1.17"
 PORT = COM3
 .PHONY = mode find test erease flash setup
 
