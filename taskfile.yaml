@@ -1,0 +1,42 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - go build -v -i main.go
+  conda:
+    cmds:
+      - conda activate esp32
+  find:
+    # deps:
+    #   - conda
+    vars:
+      PORT:
+        sh: ls /dev/tty.usb*
+    cmds:
+      - echo Searching for ports
+      - echo ESP Port is {{ .PORT}}
+  erease:
+    deps:
+      - find
+    preconditions:
+      - sh: esptool.py -h
+        msg: "No esptool installed, Halting"
+    vars:
+      PORT:
+        sh: ls /dev/tty.usb*
+    cmds:
+      - echo ereasing flash
+      - esptool.py --chip esp32s3 --port {{ .PORT }} erase_flash
+  flash:
+    deps:
+      - erease
+    vars:
+      CHIP: s3
+      IMAGE: ESP32_GENERIC_S3-20240222-v1.22.2.bin
+      PORT:
+        sh: ls /dev/tty.usb*
+    cmds:
+      - echo ereasing flash
+      - esptool.py --chip esp32{{ .CHIP }} --port {{ .PORT }} --baud 460800 write_flash -z 0 {{ .IMAGE }}
+      - echo ESP32-{{ .CHIP }} fhlashed with micropython version {{ .IMAGE }}
