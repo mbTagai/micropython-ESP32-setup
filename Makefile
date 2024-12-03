@@ -1,22 +1,13 @@
 #  python c:\users\tautv\appdata\roaming\python\python39\site-packages\esptool.py --chip esp32 --port COM3 --baud 460800 write_flash -z 0x1000 .\esp32-idf3-20200902-v1.13.bin
 # esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
 ESPTOOL = esptool.py
-IMAGE = ESP32_GENERIC-20241129-v1.24.1.bin
-IMAGE_VERSION  = 1.20
+IMAGE = ESP32_GENERIC-SPIRAM-20241129-v1.24.1.bin
+IMAGE_VERSION  = 1.24
 # PORT = "/dev/tty.usbserial-0001"
 MY_VAR := $(shell echo whatever)
 ESP_PORT := $(shell ls /dev/tty.usb*)
 
 .PHONY: python find flash erease test
-
-test:
-	@echo test line
-	@echo MY_VAR IS $(MY_VAR)
-	conda info
-
-python:
-	@echo activate conda enviroment
-	conda activate esp32
 
 find:
 	@echo Searching for ports

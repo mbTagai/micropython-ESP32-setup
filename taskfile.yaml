@@ -1,15 +1,7 @@
 version: '3'
 
 tasks:
-  build:
-    cmds:
-      - go build -v -i main.go
-  conda:
-    cmds:
-      - conda activate esp32
   find:
-    # deps:
-    #   - conda
     vars:
       PORT:
         sh: ls /dev/tty.usb*
